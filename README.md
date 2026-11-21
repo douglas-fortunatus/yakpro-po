@@ -16,8 +16,7 @@ Free, Open Source, Published under the MIT License.
 This tool parses php with the best existing php parser [PHP-Parser 5.x](https://github.com/nikic/PHP-Parser/tree/master/),
 which is an awesome php parsing library written by [nikic](https://github.com/nikic).
 
-You just have to download the zip archive and uncompress it under the PHP-Parser subdirectory,
-or make a git clone ...
+Composer installs PHP-Parser alongside this fork. No manual parser setup is needed.
 
 > [!WARNING]
 > yakpro-po 3.x works on PhpParser 5.x  
@@ -92,38 +91,12 @@ So I started to write this tool.
 Version 1.0 has been written within a few days...
 
 
-## Setup:
-    Note: This setup is also valid for Windows 10 Anniversary with bash installed...  
-    1. Prerequisites: git and php-cli (command line interface) packages. 
-       on ubuntu: (adapt according your linux distribution) 
-       # apt install git 
-       # apt install php-cli
-       do not forget to install all other php modules that you are using within your software:
-            for example: apt install php-mysql if you are using mysql... 
-    2. Navigate to the directory where you want to install yakpro-po (/usr/local is a good idea): 
-       # cd /usr/local 
-    3. Then retrieve from GitHub: 
-       # git clone https://github.com/pk-fr/yakpro-po.git 
-    4. Go to the yakpro-po directory: 
-       # cd yakpro-po 
-    5. Then retrieve from GitHub: 
-       # git clone https://github.com/nikic/PHP-Parser.git --branch 4.x
-    6. Check that yakpro-po.php has execute rights, otherwise:
-                                            # chmod a+x yakpro-po.php 
-    7. Create a symbolic link in the /usr/local/bin directory
-       # cd /usr/local/bin 
-       # ln -s /usr/local/yakpro-po/yakpro-po.php yakpro-po 
-    8. You can now run yakpro-po 
-       # yakpro-po --help 
-       # yakpro-po test.php 
+## Setup
 
-    Modify a copy of the yakpro-po.cnf to fit your needs...
-    Read the "Configuration file loading algorithm" section of this document
-    to choose the best location suiting your needs!
-
-    That's it! You're done!
-
-####
+```bash
+composer require douglas-fortunatus/yakpro-po
+php vendor/bin/yakpro-po.php --help
+```
 
 ## Usage:
 
