@@ -2,6 +2,13 @@
 
 # YAK Pro - Php Obfuscator 3.x
 
+## Composer fork
+
+This fork loads `nikic/php-parser` 5 through Composer. Install with
+`composer require douglas-fortunatus/yakpro-po`; run `vendor/bin/yakpro-po.php`.
+No parser clone or edits to `vendor/` are needed. The original upstream source
+and license remain intact.
+
 **YAK Pro** stands for **Y**et **A**nother **K**iller **Pro**duct.
 
 Free, Open Source, Published under the MIT License.

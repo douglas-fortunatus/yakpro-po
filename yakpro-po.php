@@ -14,9 +14,6 @@
 if (isset($_SERVER["SERVER_SOFTWARE"]) && ($_SERVER["SERVER_SOFTWARE"]!="") ){ echo "<h1>Comand Line Interface Only!</h1>"; die; }
 
 
-const PHP_PARSER_DIRECTORY  = 'PHP-Parser';
-
-
 require_once 'include/check_version.php';
 
 require_once 'include/get_default_defined_objects.php';     // include this file before defining something....
@@ -29,7 +26,6 @@ require_once 'version.php';
 
 include      'include/retrieve_config_and_arguments.php';
 
-require_once 'include/classes/parser_extensions/my_autoloader.php';
 require_once 'include/classes/parser_extensions/my_pretty_printer.php';
 require_once 'include/classes/parser_extensions/my_node_visitor.php';
 
@@ -49,9 +45,16 @@ use PhpParser\PhpVersion;
 
 switch($conf->parser_mode)
 {
+    case 'PREFER_PHP7':    $parser = (new ParserFactory)->createForHostVersion();                                          break;
     case 'HOST_VERSION':    $parser = (new ParserFactory)->createForHostVersion();                                          break;
     case 'NEWEST_VERSION':  $parser = (new ParserFactory)->createForNewestSupportedVersion();                               break;
-    default:                $parser = (new ParserFactory)->createForVersion(PhpVersion::fromString($conf->parser_mode));    break;
+    default:
+        if (!preg_match('/^\d+\.\d+$/', $conf->parser_mode)) {
+            fwrite(STDERR, "Unsupported parser_mode '{$conf->parser_mode}'. Use HOST_VERSION, NEWEST_VERSION, or a PHP version like 8.1.\n");
+            exit(27);
+        }
+        $parser = (new ParserFactory)->createForVersion(PhpVersion::fromString($conf->parser_mode));
+        break;
 }
 
 $traverser          = new NodeTraverser;

@@ -1,0 +1,11 @@
+{
+    "name": "douglas-fortunatus/yakpro-po",
+    "description": "Composer-ready YAK Pro PHP obfuscator 3",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^7.4|^8.0",
+        "nikic/php-parser": "^5.9"
+    },
+    "bin": ["yakpro-po.php"]
+}
